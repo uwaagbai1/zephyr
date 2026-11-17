@@ -14,7 +14,7 @@
 #include "f32.pat"
 
 #define DECLARE_COMMON_VARS(in_dims, in_param) \
-	const int16_t *dims = in_dims; \
+	const int16_t *dims = (const int16_t *)in_dims; \
 	const float32_t *params = (const float32_t *)in_param; \
 	const int32_t classes[2] = { dims[1], dims[2] }; \
 	const uint16_t sample_count = dims[3]; \
@@ -74,7 +74,7 @@ ZTEST(svm_f32, test_arm_svm_linear_predict_f32)
 
 	/* Validate output */
 	zassert_true(
-		test_equal_q31(length, output_buf, ref_linear),
+		test_equal_q31(length, output_buf, (const q31_t *)ref_linear),
 		ASSERT_MSG_INCORRECT_COMP_RESULT);
 
 	/* Free output buffer */
@@ -116,7 +116,7 @@ ZTEST(svm_f32, test_arm_svm_polynomial_predict_f32)
 
 	/* Validate output */
 	zassert_true(
-		test_equal_q31(length, output_buf, ref_polynomial),
+		test_equal_q31(length, output_buf, (const q31_t *)ref_polynomial),
 		ASSERT_MSG_INCORRECT_COMP_RESULT);
 
 	/* Free output buffer */
@@ -157,7 +157,7 @@ ZTEST(svm_f32, test_arm_svm_rbf_predict_f32)
 
 	/* Validate output */
 	zassert_true(
-		test_equal_q31(length, output_buf, ref_rbf),
+		test_equal_q31(length, output_buf, (const q31_t *)ref_rbf),
 		ASSERT_MSG_INCORRECT_COMP_RESULT);
 
 	/* Free output buffer */
@@ -198,7 +198,7 @@ ZTEST(svm_f32, test_arm_svm_sigmoid_predict_f32)
 
 	/* Validate output */
 	zassert_true(
-		test_equal_q31(length, output_buf, ref_sigmoid),
+		test_equal_q31(length, output_buf, (const q31_t *)ref_sigmoid),
 		ASSERT_MSG_INCORRECT_COMP_RESULT);
 
 	/* Free output buffer */
@@ -237,7 +237,7 @@ ZTEST(svm_f32, test_arm_svm_oneclass_predict_f32)
 
 	/* Validate output */
 	zassert_true(
-		test_equal_q31(length, output_buf, ref_oneclass),
+		test_equal_q31(length, output_buf, (const q31_t *)ref_oneclass),
 		ASSERT_MSG_INCORRECT_COMP_RESULT);
 
 	/* Free output buffer */

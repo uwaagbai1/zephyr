@@ -120,13 +120,13 @@ ZTEST(fastmath_q15, test_arm_divide_q15)
 	size_t length = ARRAY_SIZE(ref_divide);
 	arm_status status;
 	q15_t *output;
-	uint16_t *shift;
+	int16_t *shift;
 
 	/* Allocate output buffer */
 	output = malloc(length * sizeof(q15_t));
 	zassert_not_null(output, ASSERT_MSG_BUFFER_ALLOC_FAILED);
 
-	shift = malloc(length * sizeof(uint16_t));
+	shift = malloc(length * sizeof(int16_t));
 	zassert_not_null(shift, ASSERT_MSG_BUFFER_ALLOC_FAILED);
 
 	/* Run test function */

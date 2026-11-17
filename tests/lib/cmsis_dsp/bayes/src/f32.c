@@ -75,7 +75,8 @@ ZTEST(bayes_f32, test_gaussian_naive_bayes_predict_f32)
 		ASSERT_MSG_REL_ERROR_LIMIT_EXCEED);
 
 	zassert_true(
-		test_equal_q15(pattern_count, output_preds_buf, ref_pred),
+		test_equal_q15(pattern_count, (const q15_t *)output_preds_buf,
+			       (const q15_t *)ref_pred),
 		ASSERT_MSG_INCORRECT_COMP_RESULT);
 
 	/* Free output buffers */
